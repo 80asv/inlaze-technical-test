@@ -1,0 +1,18 @@
+.container {
+  padding: 30px;
+}
+
+.category {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 1rem;
+}
+
+
+.category h2 {
+  font-size: 24px;
+  color: #ffffff;
+  text-align: start;
+}

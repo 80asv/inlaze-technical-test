@@ -1,0 +1,25 @@
+.filters {
+  width: 260px;
+  min-width: 260px;
+  position: sticky;
+  top: 0;
+  background-color: #262626;
+  padding: 15px;
+  height: 100vh;
+}
+
+.searchBar h3, .sortBy h3 {
+  font-size: 16px;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 22px;
+  margin-bottom: 5px;
+}
+
+.searchBar input {
+  padding: 8px;
+  background-color: #1c1c1c;
+  width: 100%;
+  border-radius: 4px;
+  outline-color: none;
+}

@@ -1,0 +1,72 @@
+
+.movieContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+
+.infoContainer h3 {
+  margin-bottom: 6px;
+}
+
+.movie {
+  width: 200px;
+  height: 335px;
+  background-color: #262626;
+  overflow: hidden;
+  border-radius: 7px;
+}
+
+.movieImage {
+  width: 100%;
+  height: 223px;
+  object-fit: cover;
+}
+
+.movie h3 {
+  font-size: 14px;
+  font-weight: 300;
+  color: #ffffff;
+}
+
+.movie p {
+  font-size: 9px;
+  color: #ffffff;
+}
+
+.actions{
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0 10px;
+}
+
+.actions .rating {
+  border: 1px solid #ffffff;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+}
+
+.actionItem {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; 
+  justify-items: center;
+}
+
+.actionItem p {
+  font-size: 9px;
+  color: #ffffff;
+}
+
+.actionItem div, .actionItem button {
+  text-align: center;
+}

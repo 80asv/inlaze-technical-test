@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  gap: 42px;
+  align-items: center;
+  padding: 0 100px;
+  height: 69px;
+  background-color: #000000;
+}
+
+.ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  gap: 42px;
+}
+
+.ul li {
+  font-size: 14px;
+  color: #ffffff;
+}

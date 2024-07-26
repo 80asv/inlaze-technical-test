@@ -6,6 +6,7 @@ import { StatUp } from "iconoir-react";
 import AddFavoriteButton from "../shared/add-favorite-button";
 import SaveButton from "../shared/save-button";
 import WatchTrailerButton from "./watch-trailer-button";
+import UsersScore from "../shared/users-score";
 
 interface MovieBannerProps {
   movie: Movie;
@@ -39,7 +40,7 @@ export default function MovieBanner({ movie }: MovieBannerProps) {
       <div className={styles.content}>
         <div>
           <Image className={styles.posterImage} src={posterImage} alt={movie.title} width={305} height={306} />
-          <WatchTrailerButton link={''} />
+          <WatchTrailerButton link={''} movie={movie}/>
         </div>
         <div>
           <div>
@@ -55,9 +56,7 @@ export default function MovieBanner({ movie }: MovieBannerProps) {
           </div>
           <div className={styles.actions}>
               <div className={styles.rating}>
-                <p>
-                  {(movie.vote_average * 10).toFixed(0)}%
-                </p>
+                <UsersScore voteAverage={movie.vote_average} />
                 <span>Users <br />score</span>
               </div>
               <div className={styles.buttons}>

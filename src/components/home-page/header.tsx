@@ -5,19 +5,21 @@ import styles from "@/src/styles/Header.module.css";
 export default function Header(){
   return (
     <header className={styles.header}>
-      <Image src="/images/inlaze-logo.png" alt="Inlaze Movies" width={134} height={42} />
+      <Link href={'/'}>
+        <Image src="/images/inlaze-logo.png" alt="Inlaze Movies" width={134} height={42} />
+      </Link>
       <ul className={styles.ul}>
           <li>
-            <Link href="#popular">Popular</Link>
+            <Link href="/#popular">Popular</Link>
           </li>
           <li>
-            <Link href="#now_playing">Now Playing</Link>
+            <Link href="/#now_playing">Now Playing</Link>
           </li>
           <li>
-            <Link href="#upcoming">Upcoming</Link>
+            <Link href="/#upcoming">Upcoming</Link>
           </li>
           <li>
-            <Link href="#top_rated">Top Rated</Link>
+            <Link href="/#top_rated">Top Rated</Link>
           </li>
           <li>
             <Link href="#favorites">Favorites</Link>

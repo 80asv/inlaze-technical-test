@@ -1,6 +1,7 @@
 import { getMovieById } from "@/src/actions/movies";
-import MovieBanner from "@/src/components/move-detail/movie-banner";
-import MovieInfo from "@/src/components/move-detail/movie-info";
+import MovieBanner from "@/src/components/movie-detail/movie-banner";
+import MovieInfo from "@/src/components/movie-detail/movie-info";
+import MovieRecommendations from "@/src/components/movie-detail/movie-recommendations";
 import { Suspense } from "react";
 
 interface MovieDetailPageProps {
@@ -16,6 +17,9 @@ export default async function MovieDetailPage({ params }: MovieDetailPageProps) 
       <MovieBanner movie={movie} />
       <Suspense fallback={null}>
         <MovieInfo movie={movie} />
+      </Suspense>
+      <Suspense fallback={null}>
+        <MovieRecommendations movieId={params.id} /> 
       </Suspense>
     </div>
   );

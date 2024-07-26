@@ -1,11 +1,11 @@
 import { Suspense } from "react";
-import Header from "../components/home-page/header";
 import MainBanner from "../components/home-page/main-banner";
 import styles from "./page.module.css";
 import Filters from "../components/home-page/filters";
-import Categories from "../components/home-page/categories";
+import Movies from "../components/home-page/movies";
+import { FiltersSearchParamsTypes } from "../types/filters-search-params.types";
 
-export default function Home() {
+export default function Home({ searchParams }: FiltersSearchParamsTypes) {
   return (
     <main className={styles.main}>
       <Suspense fallback={null}>
@@ -13,7 +13,7 @@ export default function Home() {
       </Suspense>
       <div className={styles.movieSection}>
         <Filters />
-        <Categories />
+        <Movies searchParams={searchParams}/>
       </div>
     </main>
   );

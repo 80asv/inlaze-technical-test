@@ -1,6 +1,7 @@
 import { getGenres } from "@/src/actions/movies"
 import styles from "@/src/styles/Filters.module.css";
 
+
 export default async function GenreList(){
   const genres = await getGenres('tv');
 

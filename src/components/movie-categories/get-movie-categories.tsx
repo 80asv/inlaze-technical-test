@@ -1,45 +1,50 @@
 import { getMoviesByCategory } from "@/src/actions/movies";
-import { envConfig } from "@/src/config/env.config";
 import { MovieCategories } from "@/src/types/enums/movie-categories.enum";
 import styles from '@/styles/MovieItem.module.css';
-import { HeartSolid } from "iconoir-react";
-import Image from "next/image";
-import Link from "next/link";
+
+import MovieItem from "../home-page/movie-item";
+import { FiltersSearchParamsTypes } from "@/src/types/filters-search-params.types";
 
 interface GetMovieCategoriesProps {
   category: MovieCategories;
+  searchParams: FiltersSearchParamsTypes;
 }
 
 
-export default async function GetMovieCategories({ category }: GetMovieCategoriesProps) {
+export default async function GetMovieCategories({ category, searchParams }: GetMovieCategoriesProps) {
   const movieCategory = await getMoviesByCategory(category);
+
+  console.log({ movieCategory });
+  
+  const ordenarPeliculas = (peliculas: any[], criterio: string) => {
+    // switch (criterio) {
+    //   case 'title-asc':
+    //     return peliculas.sort((a, b) => a.title.localeCompare(b.title));
+    //   case 'popularity-asc':
+    //     return peliculas.sort((a, b) => a.popularity - b.popularity);
+    //   case 'popularity-desc':
+    //     return peliculas.sort((a, b) => b.popularity - a.popularity);
+    //   case 'rating-asc':
+    //     return peliculas.sort((a, b) => a.vote_average - b.vote_average);
+    //   case 'rating-desc':
+    //     return peliculas.sort((a, b) => b.vote_average - a.vote_average);
+    //   case 'release-date-asc':
+    //     return peliculas.sort((a, b) => new Date(a.release_date).getTime() - new Date(b.release_date).getTime());
+    //   case 'release-date-desc':
+    //     return peliculas.sort((a, b) => new Date(b.release_date).getTime() - new Date(a.release_date).getTime());
+    //   default:
+    //     return peliculas;
+    // }
+
+    return peliculas;
+  };
+
+  const peliculasOrdenadas = ordenarPeliculas(movieCategory.results, searchParams.sort || 'categories');
+
   return (
     <div className={styles.movieContainer}>
-      {movieCategory.results.map((movie) => (
-        <Link href={`movie/${movie.id}`} key={movie.id} className={styles.movie}>
-          <Image src={`${envConfig.TMDB_IMAGE_URL}${movie.poster_path}`} alt={movie.title} width={185} height={278} className={styles.movieImage} />  
-          <div className={styles.infoContainer}>
-            <div>
-              <h3>{movie.title}</h3>
-              <p>{new Date(movie.release_date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-            </div>
-            <div className={styles.actions}>
-              <div className={styles.actionItem}>
-                <p>Rating</p>
-                <div>
-                  {movie.vote_average}
-                </div>
-              </div>
-
-              <div className={styles.actionItem}>
-                <p>Favorites</p>
-                <button>
-                  <HeartSolid style={{ color: 'white'}}/>
-                </button>
-              </div>
-            </div>
-          </div>
-        </Link>
+      {peliculasOrdenadas.map((movie) => (
+        <MovieItem key={movie.id} movie={movie} />
       ))}
     </div>
   );

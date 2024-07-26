@@ -1,0 +1,108 @@
+.banner {
+  position: relative;
+  width: 100%;
+  min-height: 540px;
+}
+
+.blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 11;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: start;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.8)
+  );
+}
+
+.banner .backdropImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+}
+
+.posterImage {
+  max-width: 305px;
+  min-height: 395px;
+  object-fit: cover;
+  z-index: 12;
+  border-radius: 6%px;
+}
+
+.content {
+  position: relative;
+  z-index: 20;
+  padding: 5rem;
+  display: flex;
+  gap: 2rem;
+  color: #ffffff;
+}
+
+.content h2 {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 35px;
+}
+
+.info {
+  display: flex;
+  gap: 5rem;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.overview {
+  color: #ffffff;
+  margin-top: 3rem;
+}
+
+.overview h3 {
+  font-size: 24px;
+}
+
+.overview > p {
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 5px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.rating {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.rating p {
+  min-width: 60px;
+  min-height: 60px;
+  border-radius: 100%;
+  border: 2px solid #dc5252;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+}

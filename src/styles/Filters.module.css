@@ -8,7 +8,7 @@
   height: 100vh;
 }
 
-.searchBar h3, .sortBy h3 {
+.searchBar h3, .sortBy h3, .genres h3 {
   font-size: 16px;
   font-weight: 400;
   color: #ffffff;
@@ -22,4 +22,48 @@
   width: 100%;
   border-radius: 4px;
   outline-color: none;
+}
+
+.sortBy {
+  margin-top: 20px;
+}
+
+.sortByButtons {
+  background-color: #1c1c1c;
+}
+
+.sortByButtons button, .genreList button {
+  background-color: #1c1c1c;
+  color: #ffffff;
+  border: none;
+  padding: 8px;
+  width: 100%;
+  text-align: left;
+  transition: background-color 0.3s ease;
+}
+
+.sortByButtons button:hover, .genreList button:hover {
+  background-color: #333333;
+  cursor: pointer;
+}
+
+.genres {
+  margin-top: 20px;
+}
+
+.genreList {
+  display: flex;
+  flex-direction: column;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.genreList button {
+  background-color: #1c1c1c;
+  color: #ffffff;
+  border: none;
+  padding: 8px;
+  width: 100%;
+  text-align: left;
+  transition: background-color 0.3s ease;
 }

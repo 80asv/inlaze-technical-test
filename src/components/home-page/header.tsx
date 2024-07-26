@@ -11,13 +11,13 @@ export default function Header(){
             <Link href="#popular">Popular</Link>
           </li>
           <li>
-            <Link href="#now-playing">Now Playing</Link>
+            <Link href="#now_playing">Now Playing</Link>
           </li>
           <li>
             <Link href="#upcoming">Upcoming</Link>
           </li>
           <li>
-            <Link href="#top-rated">Top Rated</Link>
+            <Link href="#top_rated">Top Rated</Link>
           </li>
           <li>
             <Link href="#favorites">Favorites</Link>

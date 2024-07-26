@@ -8,12 +8,11 @@ export default async function MainBanner() {
   console.log(movie);
   return (
     <section className={styles.banner}>
-      <Image src={`${envConfig.TMDB_IMAGE_URL}${movie.backdrop_path}`} alt={movie.title} width={1440} height={435} className={styles.image}/>
-      
-        <div className={styles.content}>
-          <h2>{movie.title}</h2>
-          <p>{movie.overview}</p>
-        </div>
+      <Image src={`${envConfig.TMDB_IMAGE_URL}${movie.backdrop_path}`} alt={movie.title} width={1440} height={435} className={styles.image} />
+      <div className={styles.content}>
+        <h2>{movie.title}</h2>
+        <p>{movie.overview}</p>
+      </div>
     </section>
   );
 }

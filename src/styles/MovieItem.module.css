@@ -19,7 +19,7 @@
 
 .movie {
   width: 200px;
-  height: 335px;
+  min-height: 335px;
   background-color: #262626;
   overflow: hidden;
   border-radius: 7px;

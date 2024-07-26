@@ -1,0 +1,25 @@
+.cast {
+  padding: 5rem;
+}
+
+.cast h2 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.person p {
+  font-size: 16px;
+}
+
+.personImage {
+  width: 140px;
+  height: 140px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.actors {
+  display: flex;
+  gap: 2rem;
+  color: #ffffff;
+}

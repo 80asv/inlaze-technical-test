@@ -8,7 +8,6 @@ import Categories from "../components/home-page/categories";
 export default function Home() {
   return (
     <main className={styles.main}>
-      <Header />
       <Suspense fallback={null}>
         <MainBanner />
       </Suspense>

@@ -2,8 +2,9 @@ import { getMoviesByCategory } from "@/src/actions/movies";
 import { envConfig } from "@/src/config/env.config";
 import { MovieCategories } from "@/src/types/enums/movie-categories.enum";
 import styles from '@/styles/MovieItem.module.css';
-import { Heart, HeartSolid, SquareWave } from "iconoir-react";
+import { HeartSolid } from "iconoir-react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface GetMovieCategoriesProps {
   category: MovieCategories;
@@ -15,7 +16,7 @@ export default async function GetMovieCategories({ category }: GetMovieCategorie
   return (
     <div className={styles.movieContainer}>
       {movieCategory.results.map((movie) => (
-        <div key={movie.id} className={styles.movie}>
+        <Link href={`movie/${movie.id}`} key={movie.id} className={styles.movie}>
           <Image src={`${envConfig.TMDB_IMAGE_URL}${movie.poster_path}`} alt={movie.title} width={185} height={278} className={styles.movieImage} />  
           <div className={styles.infoContainer}>
             <div>
@@ -38,7 +39,7 @@ export default async function GetMovieCategories({ category }: GetMovieCategorie
               </div>
             </div>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );

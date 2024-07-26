@@ -1,0 +1,8 @@
+.button {
+  color: #ffffff;
+  border: none;
+  padding: 8px;
+  width: fit-content;
+  text-align: left;
+  transition: background-color 0.3s ease;
+}

@@ -28,6 +28,11 @@ export const login = async (email: string, password: string) => {
     },
     body: JSON.stringify(user)
   });
+  if(response.status === 404) {
+    return { message: 'User not found', statusCode: 404 } as ErrorResponse;
+  } else if(response.status !== 201) {
+    return { message: 'An error occurred, try again later', statusCode: response.status ?? 500 } as ErrorResponse;
+  }
   const data = (await response.json() as LoginResponse);
   cookies().set('token', data.token);
   return data;

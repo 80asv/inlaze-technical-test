@@ -6,7 +6,12 @@ import LoginTab from '../auth/auth-modal/login-tab';
 import { useState } from 'react';
 import { AuthType } from '@/src/types/auth.types';
 
-export default function AuthModal({ isOpenModal, setOpenModal }) {
+interface AuthModalProps {
+  isOpenModal: boolean;
+  setOpenModal: (open: boolean) => void;
+}
+
+export default function AuthModal({ isOpenModal, setOpenModal }: AuthModalProps) {
   const [authType, setAuthType] = useState<AuthType>({ type: 'register', message: null });
   return (
     <Dialog.Root open={isOpenModal} onOpenChange={setOpenModal}>
@@ -23,6 +28,7 @@ export default function AuthModal({ isOpenModal, setOpenModal }) {
             <LoginTab
               authType={authType}
               setAuthType={setAuthType}
+              closeModal={() => setOpenModal(false)}
             />
           </div>
           <div className={styles.rightPanel}>

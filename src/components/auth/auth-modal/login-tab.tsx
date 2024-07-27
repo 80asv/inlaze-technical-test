@@ -6,11 +6,13 @@ import { useEffect, useState } from 'react';
 interface LoginTabProps {
   authType: AuthType;
   setAuthType: (type: AuthType) => void;
+  closeModal?: () => void;
 }
 
 export default function LoginTab({
   authType,
-  setAuthType
+  setAuthType,
+  closeModal,
 }: LoginTabProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,15 +33,33 @@ export default function LoginTab({
     setAuthType({ type, message: null });
   }
 
+  const validateInputs = () => {
+    if (!email || !password) {
+      setError('Email and password cannot be empty.');
+      return false;
+    }
+    if (password.length < 4) {
+      setError('Password must be at least 4 characters long.');
+      return false;
+    }
+    return true;
+  }
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!validateInputs()) return;
     setLoading(true);
     authType.type === 'login' ? loginAccount() : signUp();
   }
 
   const loginAccount = () => {
     login(email, password).then((data) => {
-      console.log(data);
+      if('statusCode' in data) {
+        setError(data.message);
+      } else {
+        setAuthType({ type: 'login', message: null });
+        closeModal?.();
+      }
     })
     .catch((error) => {
       setError(error.message);
@@ -100,6 +120,8 @@ export default function LoginTab({
           type="password" 
           placeholder='Password'
           value={password}
+          required
+          minLength={4}
           onChange={(e) => setPassword(e.target.value)}
         />
         {error && (

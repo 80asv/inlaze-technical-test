@@ -30,7 +30,7 @@ function formatDuration(minutes: number): string {
 }
 
 
-export default function MovieBanner({ movie, auth, likedMovies }: MovieBannerProps) {
+export default function MovieBanner({ movie, auth }: MovieBannerProps) {
 
   const posterImage = `${envConfig.TMDB_IMAGE_URL}${movie.poster_path}`;
   const backdropImage = `${envConfig.TMDB_IMAGE_URL}${movie.backdrop_path}`;
@@ -62,7 +62,7 @@ export default function MovieBanner({ movie, auth, likedMovies }: MovieBannerPro
                 <span>Users <br />score</span>
               </div>
               <div className={styles.buttons}>
-                <AddFavoriteButton movie={movie} auth={auth} likedMovies={likedMovies} />
+                <AddFavoriteButton movie={movie} auth={auth} />
                 <SaveButton />
               </div>
           </div>

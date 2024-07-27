@@ -35,7 +35,7 @@ export default function MovieItem({ movie, likedMovies, auth }: MovieItemProps) 
 
         <div className={styles.actionItem}>
           <p>Favorites</p>
-          <AddFavoriteButton movie={movie} likedMovies={likedMovies} auth={auth}/>
+          <AddFavoriteButton movie={movie} auth={auth}/>
         </div>
       </div>
     </div>

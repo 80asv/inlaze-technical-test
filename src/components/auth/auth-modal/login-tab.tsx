@@ -86,21 +86,21 @@ export default function LoginTab({
       <div className={styles.toggles}>
         <button 
           style={{
-            backgroundColor: authType.type === 'register' ? '#f0b90d' : '#808080',
-            color: authType.type === 'register' ? '#ffffff' : '#000000'
-          }}
-          onClick={() => handleToggle('register')}
-        >
-          Sign Up
-        </button>
-        <button 
-          style={{
             backgroundColor: authType.type === 'login' ? '#f0b90d' : '#808080',
             color: authType.type === 'login' ? '#ffffff' : '#000000'
           }}
           onClick={() => handleToggle('login')}
         >
           Login
+        </button>
+        <button 
+          style={{
+            backgroundColor: authType.type === 'register' ? '#f0b90d' : '#808080',
+            color: authType.type === 'register' ? '#ffffff' : '#000000'
+          }}
+          onClick={() => handleToggle('register')}
+        >
+          Sign Up
         </button>
       </div>
       <form className={styles.form} onSubmit={handleSubmit}>

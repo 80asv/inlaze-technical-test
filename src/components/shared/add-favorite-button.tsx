@@ -4,29 +4,36 @@ import { HeartSolid } from "iconoir-react";
 import styles from '@/styles/shared/AddFavoriteButton.module.css'
 import { likeMovie, unlikeMovie } from "@/src/actions/auth-actions";
 import { MovieItem } from "@/src/types/movie-categories.types";
-import { LikedMovies } from "@/src/types/liked-movies.types";
 import { useAuthModal } from "@/src/state/auth-modal";
+import { UnifiedMovieType, useLikedMovies } from "@/src/state/liked-movies-local";
+import { MouseEvent } from "react";
+import { Movie } from "@/src/types/movie.type";
 
 interface AddFavoriteButtonProps {
-  movie: MovieItem;
-  likedMovies?: LikedMovies[];
+  movie: MovieItem | Movie;
   auth: any;
 }
 
-export default function AddFavoriteButton({ movie, likedMovies, auth }: AddFavoriteButtonProps) {
+export default function AddFavoriteButton({ movie, auth }: AddFavoriteButtonProps) {
+  const { likedMovies, addLikedMovie, removeLikedMovie } = useLikedMovies();
+
+  console.log({likedMovies})
+
   const {setShowAuthModal} = useAuthModal();
-  const handleFavorite = (e) => {
+  const handleFavorite = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if(!auth) return setShowAuthModal(true);
 
     const likedMovie = likedMovies?.find((likedMovie) => likedMovie.id === movie.id);
 
     if(likedMovie) {
+      removeLikedMovie(likedMovie.id.toString());
       unlikeMovie(likedMovie._id.toString()).then((data) => {
         console.log(data);
       });
     } else {
-      likeMovie(movie).then((data) => {
+      addLikedMovie(movie as UnifiedMovieType);
+      likeMovie(movie as MovieItem).then((data) => {
         console.log(data);
       });
     }

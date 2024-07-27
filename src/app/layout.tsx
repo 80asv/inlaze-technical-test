@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "../components/home-page/header";
 import { getAuth } from "../actions/auth";
+import GetLikedMovies from "../components/liked-movies/get-liked-movies";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+      <GetLikedMovies />
         <Header auth={auth} />
         {children}
       </body>

@@ -60,7 +60,7 @@ export default function MovieBanner({ movie }: MovieBannerProps) {
                 <span>Users <br />score</span>
               </div>
               <div className={styles.buttons}>
-                <AddFavoriteButton />
+                <AddFavoriteButton movie={movie} />
                 <SaveButton />
               </div>
           </div>

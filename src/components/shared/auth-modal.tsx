@@ -14,7 +14,7 @@ export default function AuthModal({ isOpenModal, setOpenModal }) {
         <Dialog.Content className={styles.DialogContent}>
           <div className={styles.leftPanel}>
             <header className={styles.modalHeader}>
-              <button>
+              <button onClick={() => setOpenModal(false)}>
                 <ArrowLeftCircle />
                 Back
               </button>

@@ -5,12 +5,14 @@ import Link from "next/link";
 import UsersScore from "../shared/users-score";
 import AddFavoriteButton from "../shared/add-favorite-button";
 import { MovieItem as Movie } from "@/src/types/movie-categories.types";
+import { LikedMovies } from "@/src/types/liked-movies.types";
 
 interface MovieItemProps {
   movie: Movie;
+  likedMovies: LikedMovies[];
 }
 
-export default function MovieItem({ movie }: MovieItemProps) {
+export default function MovieItem({ movie, likedMovies }: MovieItemProps) {
   return(
   <Link href={`movie/${movie.id}`} key={movie.id} className={styles.movie}>
     <Image src={`${envConfig.TMDB_IMAGE_URL}${movie.poster_path}`} alt={movie.title} width={185} height={278} className={styles.movieImage} />  
@@ -32,7 +34,7 @@ export default function MovieItem({ movie }: MovieItemProps) {
 
         <div className={styles.actionItem}>
           <p>Favorites</p>
-          <AddFavoriteButton />
+          <AddFavoriteButton movie={movie} likedMovies={likedMovies} />
         </div>
       </div>
     </div>

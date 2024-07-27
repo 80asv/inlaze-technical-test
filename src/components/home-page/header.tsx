@@ -7,13 +7,14 @@ import LoginButton from "./header/login-button";
 import AuthModal from "../shared/auth-modal";
 import { Fragment, useEffect, useState } from "react";
 import DropdownMenuComponent from "../auth/dropdown-menu";
+import { useAuthModal } from "@/src/state/auth-modal";
 
 export default function Header({ auth }){
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const {showAuthModal, setShowAuthModal} = useAuthModal();
   
   useEffect(() => {
     if (auth) {
-      setIsOpenModal(false);
+      setShowAuthModal(false);
     }
   }, []);
 
@@ -48,13 +49,13 @@ export default function Header({ auth }){
       </ul>
       <div style={{ marginLeft: 'auto'}} >
         {!auth ? (
-          <LoginButton setOpenModal={setIsOpenModal} />
+          <LoginButton setOpenModal={setShowAuthModal} />
         ) : (
           <DropdownMenuComponent auth={auth} />
         )}
       </div>
       {!auth && (
-        <AuthModal isOpenModal={isOpenModal} setOpenModal={setIsOpenModal} />
+        <AuthModal isOpenModal={showAuthModal} setOpenModal={setShowAuthModal} />
       )}
     </header>
   );

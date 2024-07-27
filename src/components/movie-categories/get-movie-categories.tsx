@@ -4,6 +4,7 @@ import styles from '@/styles/MovieItem.module.css';
 
 import MovieItem from "../home-page/movie-item";
 import { FiltersSearchParamsTypes } from "@/src/types/filters-search-params.types";
+import { getLikedMovies } from "@/src/actions/auth-actions";
 
 interface GetMovieCategoriesProps {
   category: MovieCategories;
@@ -13,6 +14,7 @@ interface GetMovieCategoriesProps {
 
 export default async function GetMovieCategories({ category, searchParams }: GetMovieCategoriesProps) {
   const movieCategory = await getMoviesByCategory(category);
+  const likedMovies = await getLikedMovies();
 
   console.log({ movieCategory });
   
@@ -44,7 +46,7 @@ export default async function GetMovieCategories({ category, searchParams }: Get
   return (
     <div className={styles.movieContainer}>
       {peliculasOrdenadas.map((movie) => (
-        <MovieItem key={movie.id} movie={movie} />
+        <MovieItem key={movie.id} movie={movie} likedMovies={likedMovies} />
       ))}
     </div>
   );

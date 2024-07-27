@@ -2,14 +2,16 @@ import { envConfig } from "@/src/config/env.config";
 import Image from "next/image";
 import { Movie } from "@/src/types/movie.type";
 import styles from "@/styles/movie-detail/MovieBanner.module.css";
-import { StatUp } from "iconoir-react";
 import AddFavoriteButton from "../shared/add-favorite-button";
 import SaveButton from "../shared/save-button";
 import WatchTrailerButton from "./watch-trailer-button";
 import UsersScore from "../shared/users-score";
+import { LikedMovies } from "@/src/types/liked-movies.types";
 
 interface MovieBannerProps {
   movie: Movie;
+  auth: any;
+  likedMovies?: LikedMovies[];
 }
 
 function formatDuration(minutes: number): string {
@@ -28,7 +30,7 @@ function formatDuration(minutes: number): string {
 }
 
 
-export default function MovieBanner({ movie }: MovieBannerProps) {
+export default function MovieBanner({ movie, auth, likedMovies }: MovieBannerProps) {
 
   const posterImage = `${envConfig.TMDB_IMAGE_URL}${movie.poster_path}`;
   const backdropImage = `${envConfig.TMDB_IMAGE_URL}${movie.backdrop_path}`;
@@ -60,7 +62,7 @@ export default function MovieBanner({ movie }: MovieBannerProps) {
                 <span>Users <br />score</span>
               </div>
               <div className={styles.buttons}>
-                <AddFavoriteButton movie={movie} />
+                <AddFavoriteButton movie={movie} auth={auth} likedMovies={likedMovies} />
                 <SaveButton />
               </div>
           </div>

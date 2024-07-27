@@ -10,9 +10,10 @@ import { LikedMovies } from "@/src/types/liked-movies.types";
 interface MovieItemProps {
   movie: Movie;
   likedMovies: LikedMovies[];
+  auth: any;
 }
 
-export default function MovieItem({ movie, likedMovies }: MovieItemProps) {
+export default function MovieItem({ movie, likedMovies, auth }: MovieItemProps) {
   return(
   <Link href={`movie/${movie.id}`} key={movie.id} className={styles.movie}>
     <Image src={`${envConfig.TMDB_IMAGE_URL}${movie.poster_path}`} alt={movie.title} width={185} height={278} className={styles.movieImage} />  
@@ -34,7 +35,7 @@ export default function MovieItem({ movie, likedMovies }: MovieItemProps) {
 
         <div className={styles.actionItem}>
           <p>Favorites</p>
-          <AddFavoriteButton movie={movie} likedMovies={likedMovies} />
+          <AddFavoriteButton movie={movie} likedMovies={likedMovies} auth={auth}/>
         </div>
       </div>
     </div>

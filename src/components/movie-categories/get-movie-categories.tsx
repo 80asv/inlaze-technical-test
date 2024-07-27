@@ -5,6 +5,7 @@ import styles from '@/styles/MovieItem.module.css';
 import MovieItem from "../home-page/movie-item";
 import { FiltersSearchParamsTypes } from "@/src/types/filters-search-params.types";
 import { getLikedMovies } from "@/src/actions/auth-actions";
+import { getAuth } from "@/src/actions/auth";
 
 interface GetMovieCategoriesProps {
   category: MovieCategories;
@@ -15,6 +16,7 @@ interface GetMovieCategoriesProps {
 export default async function GetMovieCategories({ category, searchParams }: GetMovieCategoriesProps) {
   const movieCategory = await getMoviesByCategory(category);
   const likedMovies = await getLikedMovies();
+  const auth = await getAuth();
 
   console.log({ movieCategory });
   
@@ -46,7 +48,7 @@ export default async function GetMovieCategories({ category, searchParams }: Get
   return (
     <div className={styles.movieContainer}>
       {peliculasOrdenadas.map((movie) => (
-        <MovieItem key={movie.id} movie={movie} likedMovies={likedMovies} />
+        <MovieItem key={movie.id} movie={movie} likedMovies={likedMovies} auth={auth}/>
       ))}
     </div>
   );

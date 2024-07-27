@@ -1,8 +1,20 @@
+'use client';
+
 import Image from "next/image";
 import Link from "next/link";
 import styles from "@/src/styles/Header.module.css";
+import LoginButton from "./header/login-button";
+import AuthModal from "../shared/auth-modal";
+import { useState } from "react";
 
 export default function Header(){
+
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const closeModal = () => {
+    setIsOpenModal(false);
+  }
+
   return (
     <header className={styles.header}>
       <Link href={'/'}>
@@ -28,9 +40,10 @@ export default function Header(){
             <Link href="#saved">Saved</Link>
           </li>
       </ul>
-      <div>
-        other buttons
+      <div style={{ marginLeft: 'auto'}} >
+        <LoginButton setOpenModal={setIsOpenModal} />
       </div>
+      <AuthModal isOpenModal={isOpenModal} setOpenModal={setIsOpenModal} />
     </header>
   );
 }

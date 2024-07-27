@@ -22,3 +22,21 @@
   font-size: 14px;
   color: #ffffff;
 }
+
+.loginButton {
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: auto;
+}
+
+.loginButton:hover {
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #000000;
+}

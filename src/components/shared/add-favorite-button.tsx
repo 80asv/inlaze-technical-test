@@ -17,8 +17,6 @@ interface AddFavoriteButtonProps {
 export default function AddFavoriteButton({ movie, auth }: AddFavoriteButtonProps) {
   const { likedMovies, addLikedMovie, removeLikedMovie } = useLikedMovies();
 
-  console.log({likedMovies})
-
   const {setShowAuthModal} = useAuthModal();
   const handleFavorite = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -28,14 +26,10 @@ export default function AddFavoriteButton({ movie, auth }: AddFavoriteButtonProp
 
     if(likedMovie) {
       removeLikedMovie(likedMovie.id.toString());
-      unlikeMovie(likedMovie._id.toString()).then((data) => {
-        console.log(data);
-      });
+      unlikeMovie(likedMovie._id.toString());
     } else {
       addLikedMovie(movie as UnifiedMovieType);
-      likeMovie(movie as MovieItem).then((data) => {
-        console.log(data);
-      });
+      likeMovie(movie as MovieItem);
     }
   }
 

@@ -3,6 +3,8 @@ import { Suspense } from "react";
 import GetMovieCategories from "../movie-categories/get-movie-categories";
 import styles from "@/styles/MovieCategory.module.css";
 import { FiltersSearchParamsTypes } from "@/src/types/filters-search-params.types";
+import { ErrorBoundary } from "next/dist/client/components/error-boundary";
+import ErrorGetMovies from "../movie-categories/error-get-movies";
 
 interface MoviesProps {
   searchParams: FiltersSearchParamsTypes;
@@ -19,11 +21,13 @@ export default function movies({ searchParams }: MoviesProps){
   return(
     <div className={styles.container}>
       {categories.map((category) => (
-        <div className={styles.category}>
+        <div className={styles.category} key={category}>
           <h2 id={category}>{formatCategory(category)}</h2>
-          <Suspense key={category} fallback={null}>
-            <GetMovieCategories category={category} searchParams={searchParams}/>
-          </Suspense>
+          <ErrorBoundary errorComponent={ErrorGetMovies}>
+            <Suspense key={category} fallback={null}>
+              <GetMovieCategories category={category} searchParams={searchParams}/>
+            </Suspense>
+          </ErrorBoundary>
         </div>
       ))}      
     </div>

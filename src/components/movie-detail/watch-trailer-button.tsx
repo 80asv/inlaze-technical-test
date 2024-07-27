@@ -10,7 +10,6 @@ interface WatchTrailerButtonProps {
 }
 
 export default function WatchTrailerButton({ link, movie }: WatchTrailerButtonProps) {
-  console.log(movie);
   return (
     <Link className={styles.button} href={`${link}`} target="_blank" rel={'noreferer'}>
       Watch Trailer

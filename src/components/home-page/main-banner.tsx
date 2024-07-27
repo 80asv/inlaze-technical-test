@@ -6,7 +6,6 @@ import Link from "next/link";
 
 export default async function MainBanner() {
   const movie = await getMovieById('573435');
-  console.log(movie);
   return (
     <Link href={`/movie/${movie.id}`}>
       <section className={styles.banner}>

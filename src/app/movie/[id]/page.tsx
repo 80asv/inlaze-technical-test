@@ -1,7 +1,5 @@
 import { getAuth } from "@/src/actions/auth";
-import { getLikedMovies } from "@/src/actions/auth-actions";
 import { getMovieById } from "@/src/actions/movies";
-import GetLikedMovies from "@/src/components/liked-movies/get-liked-movies";
 import MovieBanner from "@/src/components/movie-detail/movie-banner";
 import MovieInfo from "@/src/components/movie-detail/movie-info";
 import MovieRecommendations from "@/src/components/movie-detail/movie-recommendations";

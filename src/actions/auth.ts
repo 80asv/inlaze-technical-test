@@ -2,6 +2,7 @@
 
 import { cookies } from "next/headers";
 import { envConfig } from "../config/env.config";
+import { ErrorResponse } from "../types/error.types";
 
 interface LoginResponse {
   token: string;
@@ -41,6 +42,11 @@ export const register = async (email: string, password: string) => {
     },
     body: JSON.stringify(user)
   });
+  if(response.status === 409) {
+    return { message: 'This user already exists', statusCode: 429 } as ErrorResponse;
+  } else if(response.status !== 201) {
+    return { message: 'An error occurred', statusCode: 500 } as ErrorResponse;
+  }
   const data = (await response.json() as RegisterResponse);
   return data;
 }

@@ -1,36 +1,61 @@
-import { getAuth, login, register } from '@/src/actions/auth';
+import { login, register } from '@/src/actions/auth';
 import styles from '@/src/styles/shared/AuthModal.module.css';
-import { useState } from 'react';
+import { AuthType } from '@/src/types/auth.types';
+import { useEffect, useState } from 'react';
+
+interface LoginTabProps {
+  authType: AuthType;
+  setAuthType: (type: AuthType) => void;
+}
 
 export default function LoginTab({
   authType,
   setAuthType
-}) {
+}: LoginTabProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError(null);
+      }, 3000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [error])
 
   const handleToggle = (type: string) => {
-    setAuthType(type);
+    setAuthType({ type, message: null });
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    authType === 'login' ? loginAccount() : signUp();
+    authType.type === 'login' ? loginAccount() : signUp();
   }
 
   const loginAccount = () => {
     login(email, password).then((data) => {
       console.log(data);
-    }).finally(() => {
+    })
+    .catch((error) => {
+      setError(error.message);
+    })
+    .finally(() => {
       setLoading(false);
     });
   }
 
   const signUp = () => {
     register(email, password).then((data) => {
-      console.log(data);
+      if('statusCode' in data) {
+        setError(data.message);
+      } else {
+        setAuthType({ type: 'login', message: 'Account created successfully. Please login to continue' });
+      }
     }).finally(() => {
       setLoading(false);
     });
@@ -41,8 +66,8 @@ export default function LoginTab({
       <div className={styles.toggles}>
         <button 
           style={{
-            backgroundColor: authType === 'register' ? '#f0b90d' : '#808080',
-            color: authType === 'register' ? '#ffffff' : '#000000'
+            backgroundColor: authType.type === 'register' ? '#f0b90d' : '#808080',
+            color: authType.type === 'register' ? '#ffffff' : '#000000'
           }}
           onClick={() => handleToggle('register')}
         >
@@ -50,8 +75,8 @@ export default function LoginTab({
         </button>
         <button 
           style={{
-            backgroundColor: authType === 'login' ? '#f0b90d' : '#808080',
-            color: authType === 'login' ? '#ffffff' : '#000000'
+            backgroundColor: authType.type === 'login' ? '#f0b90d' : '#808080',
+            color: authType.type === 'login' ? '#ffffff' : '#000000'
           }}
           onClick={() => handleToggle('login')}
         >
@@ -60,7 +85,7 @@ export default function LoginTab({
       </div>
       <form className={styles.form} onSubmit={handleSubmit}>
         <h4>
-          {authType === 'login' 
+          {authType.type === 'login' 
             ? 'We love having you back!' 
             : 'Welcome! We are excited to have you join us'}
         </h4>
@@ -77,6 +102,12 @@ export default function LoginTab({
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        {error && (
+          <p style={{ color: 'red', fontSize: '13px', textAlign: 'center' }}>{error}</p>
+        )}
+        {authType.message && !loading && (
+          <p style={{ color: 'green', fontSize: '13px', textAlign: 'center' }}>{authType.message}</p>
+        )}
         {loading && (
           <p>Loading...</p>
         )}
@@ -86,9 +117,16 @@ export default function LoginTab({
           padding: '10px',
           borderRadius: '5px',
         }}>
-          {authType === 'login' ? 'Login' : 'Sign Up'}
+          {authType.type === 'login' ? 'Login' : 'Sign Up'}
         </button>
       </form>
+      <p style={{ fontSize: '13px', color: 'white', textAlign: 'center', marginTop: '15px' }}>
+        {authType.type === 'login' ? (
+          <span>Don't have an account? <button onClick={() => handleToggle('register')} style={{ textUnderlineOffset: '1px', color: '#f0b90d' }}>Sign Up</button></span>
+        ) : (
+          <span>Already have an account? <button onClick={() => handleToggle('login')} style={{ textUnderlineOffset: '1px', color: '#f0b90d' }}>Login</button></span>
+        )}
+      </p>
     </div>
   )
 }

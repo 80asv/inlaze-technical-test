@@ -4,9 +4,10 @@ import styles from '@/src/styles/shared/AuthModal.module.css';
 import Image from 'next/image';
 import LoginTab from '../auth/auth-modal/login-tab';
 import { useState } from 'react';
+import { AuthType } from '@/src/types/auth.types';
 
 export default function AuthModal({ isOpenModal, setOpenModal }) {
-  const [authType, setAuthType] = useState('register');
+  const [authType, setAuthType] = useState<AuthType>({ type: 'register', message: null });
   return (
     <Dialog.Root open={isOpenModal} onOpenChange={setOpenModal}>
       <Dialog.Portal>
@@ -25,7 +26,7 @@ export default function AuthModal({ isOpenModal, setOpenModal }) {
             />
           </div>
           <div className={styles.rightPanel}>
-            {authType === 'register' ? (
+            {authType.type === 'register' ? (
               <>
                 <h3>Welcome to Inlaze Movies!</h3>
                 <p>🎬 Ready to unlock a universe of cinematic delights? Sign up now and start your journey with us!</p>

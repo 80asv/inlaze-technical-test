@@ -5,15 +5,17 @@ import Link from "next/link";
 import styles from "@/src/styles/Header.module.css";
 import LoginButton from "./header/login-button";
 import AuthModal from "../shared/auth-modal";
-import { useState } from "react";
+import { Fragment, useEffect, useState } from "react";
+import DropdownMenuComponent from "../auth/dropdown-menu";
 
-export default function Header(){
-
+export default function Header({ auth }){
   const [isOpenModal, setIsOpenModal] = useState(false);
-
-  const closeModal = () => {
-    setIsOpenModal(false);
-  }
+  
+  useEffect(() => {
+    if (auth) {
+      setIsOpenModal(false);
+    }
+  }, []);
 
   return (
     <header className={styles.header}>
@@ -33,17 +35,27 @@ export default function Header(){
           <li>
             <Link href="/#top_rated">Top Rated</Link>
           </li>
-          <li>
-            <Link href="#favorites">Favorites</Link>
-          </li>
-          <li>
-            <Link href="#saved">Saved</Link>
-          </li>
+          {auth && (
+            <Fragment>
+              <li>
+                <Link href="#favorites">Favorites</Link>
+              </li>
+              <li>
+                <Link href="#saved">Saved</Link>
+              </li>
+            </Fragment>
+          )}
       </ul>
       <div style={{ marginLeft: 'auto'}} >
-        <LoginButton setOpenModal={setIsOpenModal} />
+        {!auth ? (
+          <LoginButton setOpenModal={setIsOpenModal} />
+        ) : (
+          <DropdownMenuComponent auth={auth} />
+        )}
       </div>
-      <AuthModal isOpenModal={isOpenModal} setOpenModal={setIsOpenModal} />
+      {!auth && (
+        <AuthModal isOpenModal={isOpenModal} setOpenModal={setIsOpenModal} />
+      )}
     </header>
   );
 }

@@ -2,7 +2,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { ArrowLeftCircle, Xmark } from 'iconoir-react';
 import styles from '@/src/styles/shared/AuthModal.module.css';
 import Image from 'next/image';
-import LoginTab from '../auth-modal/login-tab';
+import LoginTab from '../auth/auth-modal/login-tab';
 import { useState } from 'react';
 
 export default function AuthModal({ isOpenModal, setOpenModal }) {

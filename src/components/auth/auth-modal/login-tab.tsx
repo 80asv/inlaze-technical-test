@@ -1,4 +1,4 @@
-import { login, register } from '@/src/actions/auth';
+import { getAuth, login, register } from '@/src/actions/auth';
 import styles from '@/src/styles/shared/AuthModal.module.css';
 import { useState } from 'react';
 

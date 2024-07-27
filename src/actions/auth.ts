@@ -44,3 +44,21 @@ export const register = async (email: string, password: string) => {
   const data = (await response.json() as RegisterResponse);
   return data;
 }
+
+export const getAuth = async () => {
+  const token = cookies().get('token');
+  const response = await fetch(`${envConfig.DB_URL}/auth/current`, {
+    headers: {
+      'Authorization': `Bearer ${token?.value}`
+    },
+    cache: 'no-cache'
+  });
+  const data = await response.json();
+
+  if(response.status === 401) {
+    // cookies().delete('token');
+    return null;
+  } else {
+    return data;
+  }
+}

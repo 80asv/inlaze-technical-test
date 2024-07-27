@@ -20,7 +20,7 @@ export default function movies({ searchParams }: MoviesProps){
     <div className={styles.container}>
       {categories.map((category) => (
         <div className={styles.category}>
-          {/* <h2 id={category}>{formatCategory(category)}</h2> */}
+          <h2 id={category}>{formatCategory(category)}</h2>
           <Suspense key={category} fallback={null}>
             <GetMovieCategories category={category} searchParams={searchParams}/>
           </Suspense>

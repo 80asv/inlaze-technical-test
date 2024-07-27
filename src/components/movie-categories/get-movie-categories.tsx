@@ -17,30 +17,26 @@ export default async function GetMovieCategories({ category, searchParams }: Get
   const movieCategory = await getMoviesByCategory(category);
   const likedMovies = await getLikedMovies();
   const auth = await getAuth();
-
-  console.log({ movieCategory });
   
   const ordenarPeliculas = (peliculas: any[], criterio: string) => {
-    // switch (criterio) {
-    //   case 'title-asc':
-    //     return peliculas.sort((a, b) => a.title.localeCompare(b.title));
-    //   case 'popularity-asc':
-    //     return peliculas.sort((a, b) => a.popularity - b.popularity);
-    //   case 'popularity-desc':
-    //     return peliculas.sort((a, b) => b.popularity - a.popularity);
-    //   case 'rating-asc':
-    //     return peliculas.sort((a, b) => a.vote_average - b.vote_average);
-    //   case 'rating-desc':
-    //     return peliculas.sort((a, b) => b.vote_average - a.vote_average);
-    //   case 'release-date-asc':
-    //     return peliculas.sort((a, b) => new Date(a.release_date).getTime() - new Date(b.release_date).getTime());
-    //   case 'release-date-desc':
-    //     return peliculas.sort((a, b) => new Date(b.release_date).getTime() - new Date(a.release_date).getTime());
-    //   default:
-    //     return peliculas;
-    // }
-
-    return peliculas;
+    switch (criterio) {
+      case 'title-asc':
+        return peliculas.sort((a, b) => a.title.localeCompare(b.title));
+      case 'popularity-asc':
+        return peliculas.sort((a, b) => a.popularity - b.popularity);
+      case 'popularity-desc':
+        return peliculas.sort((a, b) => b.popularity - a.popularity);
+      case 'rating-asc':
+        return peliculas.sort((a, b) => a.vote_average - b.vote_average);
+      case 'rating-desc':
+        return peliculas.sort((a, b) => b.vote_average - a.vote_average);
+      case 'release-date-asc':
+        return peliculas.sort((a, b) => new Date(a.release_date).getTime() - new Date(b.release_date).getTime());
+      case 'release-date-desc':
+        return peliculas.sort((a, b) => new Date(b.release_date).getTime() - new Date(a.release_date).getTime());
+      default:
+        return peliculas;
+    }
   };
 
   const peliculasOrdenadas = ordenarPeliculas(movieCategory.results, searchParams.sort || 'categories');

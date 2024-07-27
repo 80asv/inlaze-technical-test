@@ -3,6 +3,7 @@
 import { cookies } from "next/headers";
 import { envConfig } from "../config/env.config";
 import { ErrorResponse } from "../types/error.types";
+import { Auth } from "../types/auth.types";
 
 interface LoginResponse {
   token: string;
@@ -67,9 +68,8 @@ export const getAuth = async () => {
   const data = await response.json();
 
   if(response.status === 401) {
-    // cookies().delete('token');
     return null;
   } else {
-    return data;
+    return data as Auth;
   }
 }

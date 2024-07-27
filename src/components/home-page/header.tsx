@@ -8,8 +8,13 @@ import AuthModal from "../shared/auth-modal";
 import { Fragment, useEffect, useState } from "react";
 import DropdownMenuComponent from "../auth/dropdown-menu";
 import { useAuthModal } from "@/src/state/auth-modal";
+import { Auth } from "@/src/types/auth.types";
 
-export default function Header({ auth }){
+interface HeaderProps {
+  auth: Auth | null;
+}
+
+export default function Header({ auth }: HeaderProps) {
   const {showAuthModal, setShowAuthModal} = useAuthModal();
   
   useEffect(() => {

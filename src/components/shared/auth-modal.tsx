@@ -12,7 +12,7 @@ interface AuthModalProps {
 }
 
 export default function AuthModal({ isOpenModal, setOpenModal }: AuthModalProps) {
-  const [authType, setAuthType] = useState<AuthType>({ type: 'register', message: null });
+  const [authType, setAuthType] = useState<AuthType>({ type: 'login', message: null });
   return (
     <Dialog.Root open={isOpenModal} onOpenChange={setOpenModal}>
       <Dialog.Portal>

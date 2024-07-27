@@ -5,7 +5,11 @@ import Filters from "../components/home-page/filters";
 import Movies from "../components/home-page/movies";
 import { FiltersSearchParamsTypes } from "../types/filters-search-params.types";
 
-export default function Home({ searchParams }: FiltersSearchParamsTypes) {
+interface HomeProps {
+  searchParams: FiltersSearchParamsTypes;
+}
+
+export default function Home({ searchParams }: HomeProps) {
   return (
     <main className={styles.main}>
       <Suspense fallback={null}>

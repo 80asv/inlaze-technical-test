@@ -3,12 +3,19 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { LogOut, UserCircle } from 'iconoir-react';
 import styles from '@/src/styles/DropDownMenu.module.css';
 import { removeNextCookie } from '@/src/utils/removeNextCookie';
+import { useLikedMovies } from '@/src/state/liked-movies-local';
+import { Auth } from '@/src/types/auth.types';
 
-const DropdownMenuComponent = ({ auth }) => {
+interface DropdownMenuProps {
+  auth: Auth | null;
+}
 
+const DropdownMenuComponent = ({ auth }: DropdownMenuProps) => {
+  const { setLikedMovies } = useLikedMovies();
 
   const logout = () => {
     removeNextCookie('token');
+    setLikedMovies([]);
   }
 
   return (
